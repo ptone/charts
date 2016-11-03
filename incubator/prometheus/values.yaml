@@ -117,9 +117,6 @@ storage_remote_opentsdb-url :
 #  The timeout to use when sending samples to the remote storage.
 storage_remote_timeout :  30s
 
-#  Print version information.
-version :  false
-
 #  Path to the console library directory.
 web_console_libraries :  console_libraries
 
