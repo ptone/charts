@@ -8,3 +8,138 @@ persistence:
   enabled: true
   storageClass: generic
   size: 8Gi
+
+###   The following are prometheus command line flags
+#
+#
+#  The capacity of the queue for pending alert manager notifications.
+alertmanager_notification-queue-capacity :  10000
+
+#  Alert manager HTTP API timeout.
+alertmanager_timeout :  10s
+
+#  Comma-separated list of Alertmanager URLs to send notifications to.
+alertmanager_url :
+
+#  Prometheus configuration file name.
+config_file :  prometheus.yml
+
+#  Set the log target and format. Example: "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
+log_format :  "logger:stderr"
+
+#  Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]
+log_level :  "info"
+
+#  Maximum number of queries executed concurrently.
+query_max-concurrency :  20
+
+#  Staleness delta allowance during expression evaluations.
+query_staleness-delta :  5m0s
+
+#  Maximum time a query may take before being aborted.
+query_timeout :  2m0s
+
+#  If approx. that many time series are in a state that would require a recovery operation after a crash, a checkpoint is triggered, even if the checkpoint interval hasn't passed yet. A recovery operation requires a disk seek. The default limit intends to keep the recovery time below 1min even on spinning disks. With SSD, recovery is much faster, so you might want to increase this value in that case to avoid overly frequent checkpoints.
+storage_local_checkpoint-dirty-series-limit :  5000
+
+#  The period at which the in-memory metrics and the chunks not yet persisted to series files are checkpointed.
+storage_local_checkpoint-interval :  5m0s
+
+#  Which chunk encoding version to use for newly created chunks. Currently supported is 0 (delta encoding), 1 (double-delta encoding), and 2 (double-delta encoding with variable bit-width).
+storage_local_chunk-encoding-version :  1
+
+#  If set, the local storage layer will perform crash recovery even if the last shutdown appears to be clean.
+storage_local_dirty :  false
+
+#  Local storage engine. Supported values are: 'persisted' (full local storage with on-disk persistence) and 'none' (no local storage).
+storage_local_engine :  persisted
+
+#  The size in bytes for the fingerprint to metric index cache.
+storage_local_index-cache-size_fingerprint-to-metric :  10485760
+
+#  The size in bytes for the metric time range index cache.
+storage_local_index-cache-size_fingerprint-to-timerange :  5242880
+
+#  The size in bytes for the label name to label values index cache.
+storage_local_index-cache-size_label-name-to-label-values :  10485760
+
+#  The size in bytes for the label pair to fingerprints index cache.
+storage_local_index-cache-size_label-pair-to-fingerprints :  20971520
+
+#  How many chunks can be waiting for persistence before sample ingestion will be throttled. Many chunks waiting to be persisted will increase the checkpoint size.
+storage_local_max-chunks-to-persist :  524288
+
+#  How many chunks to keep in memory. While the size of a chunk is 1kiB, the total memory usage will be significantly higher than this value * 1kiB. Furthermore, for various reasons, more chunks might have to be kept in memory temporarily. Sample ingestion will be throttled if the configured value is exceeded by more than 10%.
+storage_local_memory-chunks :  1048576
+
+#  The number of mutexes used for fingerprint locking.
+storage_local_num-fingerprint-mutexes :  4096
+
+#  Base path for metrics storage.
+storage_local_path :  data
+
+#  If set, a crash recovery will perform checks on each series file. This might take a very long time.
+storage_local_pedantic-checks :  false
+
+#  How long to retain samples in the local storage.
+storage_local_retention :  360h0m0s
+
+#  A series file is only truncated (to delete samples that have exceeded the retention period) if it shrinks by at least the provided ratio. This saves I/O operations while causing only a limited storage space overhead. If 0 or smaller, truncation will be performed even for a single dropped chunk, while 1 or larger will effectively prevent any truncation.
+storage_local_series-file-shrink-ratio :  0.1
+
+#  When to sync series files after modification. Possible values: 'never', 'always', 'adaptive'. Sync'ing slows down storage performance but reduces the risk of data loss in case of an OS crash. With the 'adaptive' strategy, series files are sync'd for as long as the storage is not too much behind on chunk persistence.
+storage_local_series-sync-strategy :  adaptive
+
+#  The host:port of the remote Graphite server to send samples to. None, if empty.
+storage_remote_graphite-address :
+
+#  The prefix to prepend to all metrics exported to Graphite. None, if empty.
+storage_remote_graphite-prefix :
+
+#  Transport protocol to use to communicate with Graphite. 'tcp', if empty.
+storage_remote_graphite-transport :  tcp
+
+#  The URL of the remote InfluxDB server to send samples to. None, if empty.
+storage_remote_influxdb-url :
+
+#  The name of the database to use for storing samples in InfluxDB.
+storage_remote_influxdb_database :  prometheus
+
+#  The InfluxDB retention policy to use.
+storage_remote_influxdb_retention-policy :  default
+
+#  The username to use when sending samples to InfluxDB. The corresponding password must be provided via the INFLUXDB_PW environment variable.
+storage_remote_influxdb_username :
+
+#  The URL of the remote OpenTSDB server to send samples to. None, if empty.
+storage_remote_opentsdb-url :
+
+#  The timeout to use when sending samples to the remote storage.
+storage_remote_timeout :  30s
+
+#  Print version information.
+version :  false
+
+#  Path to the console library directory.
+web_console_libraries :  console_libraries
+
+#  Path to the console template directory, available at /consoles.
+web_console_templates :  consoles
+
+#  Enable remote service shutdown.
+web_enable-remote-shutdown :  false
+
+#  The URL under which Prometheus is externally reachable (for example, if Prometheus is served via a reverse proxy). Used for generating relative and absolute links back to Prometheus itself. If the URL has a path portion, it will be used to prefix all HTTP endpoints served by Prometheus. If omitted, relevant URL components will be derived automatically.
+web_external-url :
+
+#  Address to listen on for the web interface, API, and telemetry.
+web_listen-address :  :9090
+
+#  Prefix for the internal routes of web endpoints. Defaults to path of -web.external-url.
+web_route-prefix :
+
+#  Path under which to expose metrics.
+web_telemetry-path :  /metrics
+
+#  Path to static asset directory, available at /user.
+web_user-assets :
