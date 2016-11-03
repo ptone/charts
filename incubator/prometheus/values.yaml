@@ -8,3 +8,16 @@ persistence:
   enabled: true
   storageClass: generic
   size: 8Gi
+
+extraargs:
+    alertmanager.notification-queue-capacity :  10000
+
+    #  Alert manager HTTP API timeout.
+    alertmanager.timeout :  10s
+
+    #  Comma-separated list of Alertmanager URLs to send notifications to.
+    alertmanager.url : foobar
+
+    #  Prometheus configuration file name.
+    config.file :  prometheus.yml
+
